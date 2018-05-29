@@ -51,24 +51,21 @@ class BooleanColumn extends DataColumn {
 	/**
 	 * @inheritdoc
 	 */
-	public function init()
-	{
-		if (empty($this->trueLabel)) {
+	public function init() {
+		if ( empty( $this->trueLabel ) ) {
 			$this->trueLabel = 'Active';
 		}
-		if (empty($this->falseLabel)) {
+		if ( empty( $this->falseLabel ) ) {
 			$this->falseLabel = 'Inactive';
 		}
-		$this->filter = [true => $this->trueLabel, false => $this->falseLabel];
+		$this->filter = [ true => $this->trueLabel, false => $this->falseLabel ];
 
-		if (empty($this->trueIcon)) {
-			/** @noinspection PhpUndefinedFieldInspection */
-			$this->trueIcon = ($this->grid->bootstrap) ? self::ICON_ACTIVE : $this->trueLabel;
+		if ( empty( $this->trueIcon ) ) {
+			$this->trueIcon = self::ICON_ACTIVE;
 		}
 
-		if (empty($this->falseIcon)) {
-			/** @noinspection PhpUndefinedFieldInspection */
-			$this->falseIcon = ($this->grid->bootstrap) ? self::ICON_INACTIVE : $this->falseLabel;
+		if ( empty( $this->falseIcon ) ) {
+			$this->falseIcon = self::ICON_INACTIVE;
 		}
 
 		parent::init();
@@ -77,12 +74,12 @@ class BooleanColumn extends DataColumn {
 	/**
 	 * @inheritdoc
 	 */
-	public function getDataCellValue($model, $key, $index)
-	{
-		$value = parent::getDataCellValue($model, $key, $index);
-		if ($value !== null) {
+	public function getDataCellValue( $model, $key, $index ) {
+		$value = parent::getDataCellValue( $model, $key, $index );
+		if ( $value !== null ) {
 			return $value ? $this->trueIcon : $this->falseIcon;
 		}
+
 		return $this->showNullAsFalse ? $this->falseIcon : $value;
 	}
 }
