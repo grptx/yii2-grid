@@ -68,6 +68,7 @@ class BooleanColumn extends DataColumn {
 			$this->falseIcon = self::ICON_INACTIVE;
 		}
 
+		$this->format = 'raw';
 		parent::init();
 	}
 
